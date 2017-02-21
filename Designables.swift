@@ -107,6 +107,7 @@ extension UIView {
     private func _addBlurryView(withStyle style: UIBlurEffectStyle) {
         let blurEffect = UIBlurEffect(style: style)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.userInteractionEnabled = false
         blurEffectView.frame = self.bounds
         blurEffectView.autoresizingMask = [
             .flexibleWidth, .flexibleHeight
@@ -265,6 +266,7 @@ extension UIView {
                 borderView.tag = 10004
             }
         }
+        borderView.userInteractionEnabled = false
         self.addSubview(borderView)
         self.sendSubview(toBack: borderView)
     }
@@ -316,26 +318,32 @@ extension UIView {
         get { return self.gradientStart }
         set { _addGradientView(andSet:"startColor", to: newValue) }
     }
+    
     @IBInspectable var gradientEnd:UIColor {
         get { return self.gradientEnd }
         set { _addGradientView(andSet:"endColor", to: newValue) }
     }
+    
     @IBInspectable var gradientStartLocation: Double {
         get { return self.gradientStartLocation }
         set { _addGradientView(andSet:"startLocation", to: newValue) }
     }
+    
     @IBInspectable var gradientEndLocation: Double {
         get { return self.gradientEndLocation }
         set { _addGradientView(andSet:"endLocation", to: newValue) }
     }
+    
     @IBInspectable var gradientHorizontal: Bool {
         get { return self.gradientHorizontal }
         set { _addGradientView(andSet:"horizontalMode", to: newValue) }
     }
+    
     @IBInspectable var gradientDiagonal: Bool {
         get { return self.gradientDiagonal }
         set { _addGradientView(andSet:"diagonalMode", to: newValue) }
     }
+    
     private func _addGradientView(andSet prop: String, to value:Any) {
         var gradientViewInstance:UIGradientView!
         for subView in self.subviews {

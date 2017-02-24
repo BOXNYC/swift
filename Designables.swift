@@ -30,8 +30,8 @@ extension UITextField {
         set {
             self.attributedPlaceholder = NSAttributedString(
                 string:
-                    self.placeholder != nil ?
-                        self.placeholder! : "",
+                self.placeholder != nil ?
+                    self.placeholder! : "",
                 attributes: [
                     NSForegroundColorAttributeName: newValue!
                 ]
@@ -107,7 +107,7 @@ extension UIView {
     private func _addBlurryView(withStyle style: UIBlurEffectStyle) {
         let blurEffect = UIBlurEffect(style: style)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.userInteractionEnabled = false
+        blurEffectView.isUserInteractionEnabled = false
         blurEffectView.frame = self.bounds
         blurEffectView.autoresizingMask = [
             .flexibleWidth, .flexibleHeight
@@ -230,9 +230,9 @@ extension UIView {
         for subView in subviews {
             if
                 subView.tag == 10001 && borderSide == "top" ||
-                subView.tag == 10002 && borderSide == "bottom" ||
-                subView.tag == 10003 && borderSide == "left" ||
-                subView.tag == 10004 && borderSide == "right"
+                    subView.tag == 10002 && borderSide == "bottom" ||
+                    subView.tag == 10003 && borderSide == "left" ||
+                    subView.tag == 10004 && borderSide == "right"
             {
                 borderView = subView
                 existed = true
@@ -266,42 +266,42 @@ extension UIView {
                 borderView.tag = 10004
             }
         }
-        borderView.userInteractionEnabled = false
+        borderView.isUserInteractionEnabled = false
         self.addSubview(borderView)
         self.sendSubview(toBack: borderView)
     }
     
     private func _createBorderFrame(borderSide:String, weight: CGFloat) ->CGRect {
         switch(borderSide) {
-            case "top" :
-                return CGRect(
-                    x: 0,
-                    y: 0,
-                    width: self.frame.size.width,
-                    height: weight
-                )
-            case "bottom" :
-                return CGRect(
-                    x: 0,
-                    y: self.frame.size.height - weight,
-                    width: self.frame.size.width,
-                    height: weight
-                )
-            case "left" :
-                return CGRect(
-                    x: 0,
-                    y: 0,
-                    width: weight,
-                    height: self.frame.size.height
-                )
-            case "right" :
-                return CGRect(
-                    x: self.frame.size.width - weight,
-                    y: 0,
-                    width: weight,
-                    height: self.frame.size.height
-                )
-            default : return CGRect()
+        case "top" :
+            return CGRect(
+                x: 0,
+                y: 0,
+                width: self.frame.size.width,
+                height: weight
+            )
+        case "bottom" :
+            return CGRect(
+                x: 0,
+                y: self.frame.size.height - weight,
+                width: self.frame.size.width,
+                height: weight
+            )
+        case "left" :
+            return CGRect(
+                x: 0,
+                y: 0,
+                width: weight,
+                height: self.frame.size.height
+            )
+        case "right" :
+            return CGRect(
+                x: self.frame.size.width - weight,
+                y: 0,
+                width: weight,
+                height: self.frame.size.height
+            )
+        default : return CGRect()
         }
     }
     
